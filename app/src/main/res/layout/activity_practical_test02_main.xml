@@ -126,29 +126,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ScrollView
+        <TextView
+            android:id="@+id/pokemon_abilities_text_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:maxLines="10" />
 
-            <TextView
-                android:id="@+id/pokemon_abilities_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="10" />
-
-        </ScrollView>
-
-        <ScrollView
+        <TextView
+            android:id="@+id/pokemon_types_text_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/pokemon_types_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLines="10" />
-
-        </ScrollView>
+            android:layout_height="wrap_content"
+            android:maxLines="10" />
 
         <ImageView
             android:id="@+id/pokemon_image_view"

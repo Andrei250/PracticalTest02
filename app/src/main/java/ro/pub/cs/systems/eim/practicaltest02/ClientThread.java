@@ -7,7 +7,6 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -16,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URL;
 
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
@@ -76,10 +76,22 @@ public class ClientThread extends Thread {
             System.out.println(types);
             System.out.println(url);
 
+            URL newurl = new URL(url);
+            Bitmap mIcon_val = BitmapFactory.decodeStream(newurl.openConnection().getInputStream());
 
-            pokemonTypes.post(() -> pokemonTypes.setText(types));
-            pokemonAbilities.post(() -> pokemonAbilities.setText(abilities));
-            pokemonImage.post(() -> Picasso.get().load(url).into(pokemonImage));
+
+
+            pokemonTypes.post(() ->{
+                pokemonAbilities.setText(abilities);
+                pokemonTypes.setText(types);
+//                try {
+//                    pokemonImage.setImageBitmap(BitmapFactory.decodeStream(new URL(url).openConnection().getInputStream()));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+            });
+//            pokemonAbilities.post(() -> pokemonAbilities.setText(abilities));
+            pokemonImage.post(() -> pokemonImage.setImageBitmap(mIcon_val));
         } // if an exception occurs, it is logged
         catch (IOException ioException) {
             Log.e(Constants.TAG, "[CLIENT THREAD] An exception has occurred: " + ioException.getMessage());
